@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="?attr/colorAccent">
+    <!--//波纹颜色-->
+
+    <!--波纹效果的样式 取Drawable的轮廓-->
+    <item
+        android:id="@android:id/mask"
+        android:drawable="@drawable/stroke_red" />
+    <!--背景-->
+    <item android:drawable="@drawable/solid_green" />
+</ripple>

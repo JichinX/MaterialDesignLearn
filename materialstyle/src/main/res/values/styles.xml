@@ -1,0 +1,68 @@
+<resources>
+
+    <style name="MenuTextAppearance" parent="Base.TextAppearance.AppCompat.Widget.ActionBar.Menu">
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!--ActionBar 中菜单的样式-->
+        <item name="actionMenuTextAppearance">@style/MenuTextAppearance</item>
+        <!--界面主色 ActionBar的背景色-->
+        <item name="colorPrimary">@color/colorPrimary_Purple</item>
+        <!--状态栏的颜色-->
+        <item name="colorPrimaryDark">@color/colorPrimaryDark_Purple</item>
+        <!--colorAccent是设置像是CheckBox的颜色-->
+        <item name="colorAccent">@color/colorAccent_Purple</item>
+        <!--整体背景颜色-->
+        <item name="android:windowBackground">@color/windowBackground_Purple</item>
+        <!--ActionBar Title的颜色-->
+        <item name="titleTextColor">@color/title_text_light</item>
+        <!--Action中menu的字体颜色-->
+        <item name="actionMenuTextColor">@color/title_text_light</item>
+    </style>
+
+    <style name="AppTheme_Blue" parent="AppTheme">
+        <item name="colorPrimary">@color/colorPrimary_Blue</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark_Blue</item>
+        <item name="colorAccent">@color/colorAccent_Blue</item>
+        <item name="android:windowBackground">@color/windowBackground_Blue</item>
+        <item name="titleTextColor">@color/title_text_light</item>
+        <item name="actionMenuTextColor">@color/title_text_light</item>
+
+
+    </style>
+
+    <style name="AppTheme_Green" parent="AppTheme">
+        <item name="colorPrimary">@color/colorPrimary_Green</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark_Green</item>
+        <item name="colorAccent">@color/colorAccent_Green</item>
+        <item name="android:windowBackground">@color/windowBackground_Green</item>
+        <item name="titleTextColor">@color/title_text_light</item>
+        <item name="actionMenuTextColor">@color/title_text_light</item>
+
+
+    </style>
+
+    <style name="AppTheme_Yellow" parent="AppTheme">
+        <item name="colorPrimary">@color/colorPrimary_Yellow</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark_Yellow</item>
+        <item name="colorAccent">@color/colorAccent_Yellow</item>
+        <item name="android:windowBackground">@color/windowBackground_Yellow</item>
+        <item name="titleTextColor">@color/title_text_gray</item>
+        <item name="actionMenuTextColor">@color/title_text_gray</item>
+
+
+    </style>
+
+    <style name="AppTheme_Gray" parent="AppTheme">
+        <item name="colorPrimary">@color/colorPrimary_Gray</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark_Gray</item>
+        <item name="colorAccent">@color/colorAccent_Gray</item>
+        <item name="android:windowBackground">@color/windowBackground_Gray</item>
+        <item name="titleTextColor">@color/title_text_light</item>
+        <item name="actionMenuTextColor">@color/title_text_light</item>
+
+
+    </style>
+</resources>

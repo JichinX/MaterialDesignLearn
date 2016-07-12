@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1，触摸反馈" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="Button"
+            android:textAllCaps="false" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2，揭露动画" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/disappear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="消失" />
+
+            <TextView
+                android:id="@+id/view_rect"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+
+                android:layout_margin="5dp"
+                android:background="@drawable/rectangle_bg"
+                android:elevation="5dp" />
+
+            <TextView
+                android:id="@+id/view_oval"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:background="@drawable/oval_bg" />
+
+            <Button
+                android:id="@+id/show"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="5dp"
+                android:text="显示" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3，曲线运动" />
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:gravity="center">-->
+
+        <!--<Button-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="恢复" />-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="200dp"-->
+        <!--android:layout_height="200dp"-->
+        <!--android:background="#FFFFFF"-->
+        <!--android:elevation="5dp">-->
+
+        <!--<TextView-->
+        <!--android:id="@+id/ball"-->
+        <!--android:layout_width="10dp"-->
+        <!--android:layout_height="10dp"-->
+        <!--android:layout_margin="5dp"-->
+        <!--android:background="@drawable/oval_bg" />-->
+        <!--</LinearLayout>-->
+
+        <!--<Button-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content" />-->
+        <!--</LinearLayout>-->
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4，视图状态改变" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <Button
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:background="@drawable/oval_bg"
+                android:gravity="center"
+                android:stateListAnimator="@drawable/state_change_selector"
+                android:text="TEST1"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:background="@drawable/oval_bg"
+                android:gravity="center"
+                android:stateListAnimator="@drawable/state_change_selector"
+                android:text="TEST2"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:background="@drawable/oval_bg"
+                android:gravity="center"
+                android:stateListAnimator="@drawable/state_change_selector"
+                android:text="TEST3"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:background="@drawable/oval_bg"
+                android:gravity="center"
+                android:stateListAnimator="@drawable/state_change_selector"
+                android:text="TEST4"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:background="@drawable/oval_bg"
+                android:gravity="center"
+                android:stateListAnimator="@drawable/state_change_selector"
+                android:text="TEST5"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5，矢量动画" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <LinearLayout
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@drawable/vector_triangle"></LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="6，Activity切换动画" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/explode_bt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="explode"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/slide_bt"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="slide"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/fade_bt"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="fade"
+                android:textAllCaps="false" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

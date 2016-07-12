@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/theme_default"
+        android:title="default theme"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/theme_Blue"
+        android:title="blue theme"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/theme_Green"
+        android:title="green theme"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/theme_Yellow"
+        android:title="yellow theme"
+        android:titleCondensed="yellow"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/theme_Gray"
+        android:title="green theme"
+        android:titleCondensed="gray"
+        app:showAsAction="ifRoom" />
+</menu>

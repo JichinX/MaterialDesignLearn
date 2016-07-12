@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MaterialStyle</string>
+    <string name="string_open">打开</string>
+    <string name="string_close">关闭</string>
+</resources>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/menu_style"
+            android:checked="true"
+            android:title="基本样式" />
+        <item
+            android:id="@+id/menu_animation"
+            android:title="动画">
+
+        </item>
+        <item
+            android:id="@+id/animation_second"
+            android:title="新的插值器">
+
+        </item>
+        <item
+            android:id="@+id/animation_third"
+            android:title="动画一">
+
+        </item>
+        <item
+            android:id="@+id/widget_first"
+            android:title="控件一">
+
+        </item>
+        <item
+            android:id="@+id/widget_second"
+            android:title="控件二">
+
+        </item>
+        <item
+            android:id="@+id/widget_third"
+            android:title="控件三">
+
+        </item>
+        <item
+            android:id="@+id/widget_forth"
+            android:title="控件四">
+
+        </item>
+    </group>
+</menu>

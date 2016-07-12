@@ -1,0 +1,12 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- 所谓的ActionBar-->
+        <item name="colorPrimary">#f75842</item>
+        <!-- 状态栏-->
+        <item name="colorPrimaryDark">#f75842</item>
+        <item name="colorAccent">#0F0</item>
+    </style>
+
+</resources>
