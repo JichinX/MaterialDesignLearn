@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
-import android.support.annotation.UiThread;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.CardView;
@@ -27,10 +26,8 @@ import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.TextView;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 /**
  * 项目名称：MaterialDesignLearn
@@ -43,17 +40,16 @@ import java.util.Random;
  */
 public class RecyclerViewFragment extends Fragment implements Handler.Callback {
 
-    private RecyclerView recyclerView;
     private SwipeRefreshLayout refreshLayout;
     private List<String> sourceList;
     private customLinearLayoutManager linearLayoutManager;
+    private RecyclerView recyclerView;
     private customGridLayoutManager gridLayoutManager;
     private customStaggeredGridLayoutManager staggeredGridLayoutManager;
     private myRecyclerViewAdapter adapter;
     private Handler handler;
 
     @Override
-
     public void onCreate(@Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         super.onCreate(savedInstanceState);
@@ -63,7 +59,7 @@ public class RecyclerViewFragment extends Fragment implements Handler.Callback {
     }
 
     private void createLayoutManager() {
-        linearLayoutManager = new customLinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        linearLayoutManager = new customLinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, true);
         gridLayoutManager = new customGridLayoutManager(getContext(), 2);
         staggeredGridLayoutManager = new customStaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
     }
@@ -111,7 +107,8 @@ public class RecyclerViewFragment extends Fragment implements Handler.Callback {
         for (int i = start; i < end; i++) {
             sourceList.add(String.valueOf(i));
         }
-        adapter.notifyDataSetChanged();
+        //从指定行插入
+        adapter.notifyItemInserted(start);
     }
 
     @Override
