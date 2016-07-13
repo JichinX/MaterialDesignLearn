@@ -7,7 +7,6 @@
     <!-- viewportWidth、viewportHeight 这个是画布宽高-->
     <!--width、height定义矢量图形的绝对大小-->
     <path
-        android:name="triangle"
         android:fillColor="#FF0000"
-        android:pathData="m20.75,124.75l54,-100l54,100l-108,0z" />
+        android:pathData="m25.5,61.46803l13.26476,-23.43611l22.97046,-13.53192l26.52803,0l22.97195,13.53192l13.26481,23.43611l0,27.06392l-13.26481,23.43669l-22.97195,13.53136l-26.52803,0l-22.97046,-13.53136l-13.26476,-23.43669l0,-27.06392z" />
 </vector>

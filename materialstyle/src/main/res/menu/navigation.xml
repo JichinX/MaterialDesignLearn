@@ -12,34 +12,34 @@
 
         </item>
         <item
-            android:id="@+id/animation_second"
-            android:title="新的插值器">
+            android:id="@+id/menu_widget"
+            android:title="控件(RecyclerView)">
 
         </item>
-        <item
-            android:id="@+id/animation_third"
-            android:title="动画一">
+        <!--<item-->
+        <!--android:id="@+id/animation_third"-->
+        <!--android:title="动画一">-->
 
-        </item>
-        <item
-            android:id="@+id/widget_first"
-            android:title="控件一">
+        <!--</item>-->
+        <!--<item-->
+        <!--android:id="@+id/widget_first"-->
+        <!--android:title="控件一">-->
 
-        </item>
-        <item
-            android:id="@+id/widget_second"
-            android:title="控件二">
+        <!--</item>-->
+        <!--<item-->
+        <!--android:id="@+id/widget_second"-->
+        <!--android:title="控件二">-->
 
-        </item>
-        <item
-            android:id="@+id/widget_third"
-            android:title="控件三">
+        <!--</item>-->
+        <!--<item-->
+        <!--android:id="@+id/widget_third"-->
+        <!--android:title="控件三">-->
 
-        </item>
-        <item
-            android:id="@+id/widget_forth"
-            android:title="控件四">
+        <!--</item>-->
+        <!--<item-->
+        <!--android:id="@+id/widget_forth"-->
+        <!--android:title="控件四">-->
 
-        </item>
+        <!--</item>-->
     </group>
 </menu>

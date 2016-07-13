@@ -14,7 +14,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.transition.Explode;
 import android.transition.Fade;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -23,13 +22,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import java.lang.reflect.Field;
 
 public class MainActivity extends AppCompatActivity {
-    private Fragment mainFragment, aimationFragment;
+    private Fragment mainFragment, animation, widgetFragment;
     private DrawerLayout drawerlayout;
     private MenuItem currentMenuItem;
 
@@ -91,10 +89,16 @@ public class MainActivity extends AppCompatActivity {
                 fragmentTransaction.replace(R.id.main_fragment, mainFragment);
                 break;
             case R.id.menu_animation:
-                if (aimationFragment == null) {
-                    aimationFragment = new AnimationFragment();
+                if (animation == null) {
+                    animation = new AnimationFragment();
                 }
-                fragmentTransaction.replace(R.id.main_fragment, aimationFragment);
+                fragmentTransaction.replace(R.id.main_fragment, animation);
+                break;
+            case R.id.menu_widget:
+                if (widgetFragment == null) {
+                    widgetFragment = new RecyclerViewFragment();
+                }
+                fragmentTransaction.replace(R.id.main_fragment, widgetFragment);
                 break;
             default:
                 break;
@@ -168,28 +172,40 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        boolean consume = false;
         int flag = 0;
         switch (item.getItemId()) {
             case android.R.id.home:
+                consume = true;
                 break;
             case R.id.theme_default:
+                consume = true;
                 flag = 0;
                 break;
             case R.id.theme_Blue:
+                consume = true;
                 flag = 1;
                 break;
             case R.id.theme_Gray:
+                consume = true;
                 flag = 2;
                 break;
             case R.id.theme_Green:
+                consume = true;
                 flag = 4;
                 break;
             case R.id.theme_Yellow:
+                consume = true;
                 flag = 3;
                 break;
+            default:
+                consume = false;
+                break;
         }
-        changeTheme(flag);
-        return true;
+        if (consume) {
+            changeTheme(flag);
+        }
+        return consume;
     }
 
     private void changeTheme(int flag) {

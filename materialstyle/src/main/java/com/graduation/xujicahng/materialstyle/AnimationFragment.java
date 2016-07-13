@@ -2,13 +2,11 @@ package com.graduation.xujicahng.materialstyle;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.annotation.TargetApi;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.graphics.Path;
-import android.graphics.Rect;
-import android.graphics.RectF;
+import android.graphics.drawable.Animatable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -19,9 +17,11 @@ import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
-import android.view.animation.Animation;
-import android.view.animation.PathInterpolator;
+import android.view.animation.AnimationUtils;
+import android.view.animation.Interpolator;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 /**
@@ -40,6 +40,15 @@ public class AnimationFragment extends Fragment {
     private Button slideBtn, fadeBtn, explodeBtn;
     private AppBarLayout appBarLayout;
     private TextView ball;
+    private ImageView vectorImageTriangle;
+    private ImageView vectorImageRect;
+    private Interpolator[] interpolator;
+    private Path path;
+    private LinearLayout ball_container;
+    private ObjectAnimator mAnimator;
+    private Button preBtn;
+    private Button nextbtn;
+    private int inerpolatorId = 0;
 
     @Nullable
     @Override
@@ -56,6 +65,26 @@ public class AnimationFragment extends Fragment {
         explodeBtn = (Button) view.findViewById(R.id.explode_bt);
         ball = (TextView) view.findViewById(R.id.ball);
         appBarLayout = (AppBarLayout) getActivity().findViewById(R.id.appBarLayout);
+        vectorImageTriangle = (ImageView) view.findViewById(R.id.vector_image_triangle);
+        ball_container = (LinearLayout) view.findViewById(R.id.ball_container);
+        preBtn = (Button) view.findViewById(R.id.pre_bt);
+        nextbtn = (Button) view.findViewById(R.id.next_bt);
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            interpolator = new Interpolator[]{
+                    AnimationUtils.loadInterpolator(getActivity(),
+                            android.R.interpolator.linear),
+                    AnimationUtils.loadInterpolator(getActivity(),
+                            android.R.interpolator.fast_out_linear_in),
+                    AnimationUtils.loadInterpolator(getActivity(),
+                            android.R.interpolator.fast_out_slow_in),
+                    AnimationUtils.loadInterpolator(getActivity(),
+                            android.R.interpolator.linear_out_slow_in)
+            };
+        }
+
+//        vectorImageRect = (ImageView) view.findViewById(R.id.vector_image_rect);
         slideBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,7 +130,7 @@ public class AnimationFragment extends Fragment {
         ovalView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     startAnimation(v, flag, v.getWidth() / 2);
                 }
             }
@@ -109,7 +138,7 @@ public class AnimationFragment extends Fragment {
         rectView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     startAnimation(v, flag, (float) Math.hypot(v.getWidth(), v.getHeight()) / 2);
                 }
             }
@@ -120,22 +149,65 @@ public class AnimationFragment extends Fragment {
                 startBalLAnimation(v);
             }
         });
+        vectorImageTriangle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Animatable animatable = (Animatable) vectorImageTriangle.getDrawable();
+                animatable.start();
+            }
+        });
+        preBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeInterploator(-1);
+            }
+        });
+//        VectorDrawableCompat vectorDrawableCompat = VectorDrawableCompat.create(getResources(), R.drawable.vector_animator, null);
+//        ImageView imageView = new ImageView(getActivity());
+//        imageView.setImageDrawable(vectorDrawableCompat);
 
+        nextbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeInterploator(1);
+            }
+        });
         return view;
     }
 
+    private void changeInterploator(int i) {
+        inerpolatorId += i;
+        if (inerpolatorId >= interpolator.length) {
+            inerpolatorId = 0;
+        }
+        if (inerpolatorId < 0) {
+            inerpolatorId = interpolator.length - 1;
+        }
+    }
+
     private void startBalLAnimation(View v) {
+        if (path == null) {
+            path = new Path();
+            int witdh = v.getWidth();
+            path.moveTo(v.getLeft(), v.getTop());
+            path.lineTo(v.getLeft(), ball_container.getHeight() - witdh);
+            path.lineTo(ball_container.getWidth() - witdh, ball_container.getHeight() - witdh);
+            path.lineTo(ball_container.getWidth() - witdh, ball.getTop());
+            path.lineTo(v.getLeft(), v.getTop());
+        }
+
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-//            Path path = new Path();
-//            // Rect的变量使用int类型，而RectF使用float类型 CCW逆时针 CW顺时针
-//            path.addRect(new RectF(0f, 0f, 0.5f, 0.5f), Path.Direction.CCW);
-//            PathInterpolator pathInterpolator = new PathInterpolator(path);
-////            PathInterpolator pathInterpolator = new PathInterpolator(0.5f, 0.5f);
-//            v.animate().setDuration(2000).translationX(400).translationY(400).setInterpolator(pathInterpolator).setUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+////            PathInterpolator pathInterpolator = new PathInterpolator(path);
+//            v.animate().setDuration(2000).translationX(400).translationY(400).setInterpolator(interpolator[1]).setUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
 //                @Override
 //                public void onAnimationUpdate(ValueAnimator animation) {
 //                }
 //            }).start();
+            Interpolator innerInterpolator = interpolator[inerpolatorId];
+            mAnimator = ObjectAnimator.ofFloat(v, View.X, View.Y, path);
+            mAnimator.setDuration(3000);
+            mAnimator.setInterpolator(innerInterpolator);
+            mAnimator.start();
         }
     }
 

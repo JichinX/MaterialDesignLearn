@@ -6,8 +6,13 @@
     android:viewportWidth="150">
     <!-- viewportWidth、viewportHeight 这个是画布宽高-->
     <!--width、height定义矢量图形的绝对大小-->
-    <path
-        android:name="triangle"
-        android:fillColor="#FF0000"
-        android:pathData="m20.75,124.75l54,-100l54,100l-108,0z" />
+    <group
+        android:name="rect"
+        android:pivotX="75"
+        android:pivotY="75"
+        android:rotation="45">
+        <path
+            android:fillColor="#FF0000"
+            android:pathData="m7.5,75.00046l67.5,-67.00046l67.5,67.00046l-67.5,66.99954l-67.5,-66.99954z" />
+    </group>
 </vector>
