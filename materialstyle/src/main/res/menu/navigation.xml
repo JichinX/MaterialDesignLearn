@@ -12,12 +12,12 @@
 
         </item>
         <item
-            android:id="@+id/menu_widget"
+            android:id="@+id/menu_widget_recycler"
             android:title="控件(RecyclerView)">
 
         </item>
         <item
-            android:id="@+id/animation_third"
+            android:id="@+id/menu_widget_floating_Action_bar"
             android:title="控件(FloatingActionBar)" />
 
         <!--</item>-->

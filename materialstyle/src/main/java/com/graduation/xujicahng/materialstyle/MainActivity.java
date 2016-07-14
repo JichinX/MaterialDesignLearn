@@ -27,7 +27,7 @@ import android.widget.TextView;
 import java.lang.reflect.Field;
 
 public class MainActivity extends AppCompatActivity {
-    private Fragment mainFragment, animation, widgetFragment;
+    private Fragment mainFragment, animation, widgetFragment, floatingActionBarFragment;
     private DrawerLayout drawerlayout;
     private MenuItem currentMenuItem;
 
@@ -94,11 +94,17 @@ public class MainActivity extends AppCompatActivity {
                 }
                 fragmentTransaction.replace(R.id.main_fragment, animation);
                 break;
-            case R.id.menu_widget:
+            case R.id.menu_widget_recycler:
                 if (widgetFragment == null) {
                     widgetFragment = new RecyclerViewFragment();
                 }
                 fragmentTransaction.replace(R.id.main_fragment, widgetFragment);
+                break;
+            case R.id.menu_widget_floating_Action_bar:
+                if (floatingActionBarFragment == null) {
+                    floatingActionBarFragment = new FloatingActionBarFragment();
+                }
+                fragmentTransaction.replace(R.id.main_fragment, floatingActionBarFragment);
                 break;
             default:
                 break;
