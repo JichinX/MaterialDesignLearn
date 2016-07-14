@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MaterialDesignLearn.iml" filepath="$PROJECT_DIR$/MaterialDesignLearn.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/contextmenutest/contextmenutest.iml" filepath="$PROJECT_DIR$/contextmenutest/contextmenutest.iml" />
       <module fileurl="file://$PROJECT_DIR$/materialstyle/materialstyle.iml" filepath="$PROJECT_DIR$/materialstyle/materialstyle.iml" />
     </modules>
   </component>

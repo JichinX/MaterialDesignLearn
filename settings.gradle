@@ -1,1 +1,1 @@
-include ':app', ':materialstyle'
+include ':app', ':materialstyle', ':contextmenutest'

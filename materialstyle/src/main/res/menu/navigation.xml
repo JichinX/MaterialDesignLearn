@@ -16,9 +16,9 @@
             android:title="控件(RecyclerView)">
 
         </item>
-        <!--<item-->
-        <!--android:id="@+id/animation_third"-->
-        <!--android:title="动画一">-->
+        <item
+            android:id="@+id/animation_third"
+            android:title="控件(FloatingActionBar)" />
 
         <!--</item>-->
         <!--<item-->

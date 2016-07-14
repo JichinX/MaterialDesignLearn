@@ -16,6 +16,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.AttributeSet;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -98,6 +99,19 @@ public class RecyclerViewFragment extends Fragment implements Handler.Callback {
         recyclerView.setLayoutManager(linearLayoutManager);
         adapter = new myRecyclerViewAdapter(sourceList, recyclerView);
         recyclerView.setAdapter(adapter);
+        //注册上下文菜单
+//        getActivity().registerForContextMenu(recyclerView);
+//        recyclerView.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
+//            @Override
+//            public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+//                //获取打气筒
+//                MenuInflater inflater = getActivity().getMenuInflater();
+//                //解析菜单文件
+//                inflater.inflate(R.menu.context_menu, menu);
+//                menu.setHeaderTitle("Item 操作");
+//            }
+//        });
+        registerForContextMenu(recyclerView);
         return view;
     }
 
@@ -206,9 +220,15 @@ public class RecyclerViewFragment extends Fragment implements Handler.Callback {
             ItemShowAnimation(holder.bgView);
             super.onViewAttachedToWindow(holder);
         }
+
+        @Override
+        public void onViewRecycled(viewHolder holder) {
+            holder.itemView.setOnCreateContextMenuListener(null);
+            super.onViewRecycled(holder);
+        }
     }
 
-    private class viewHolder extends RecyclerView.ViewHolder {
+    private class viewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener, View.OnLongClickListener {
         private TextView textView;
         private CardView bgView;
 
@@ -216,7 +236,64 @@ public class RecyclerViewFragment extends Fragment implements Handler.Callback {
             super(itemView);
             textView = (TextView) itemView.findViewById(R.id.text);
             bgView = (CardView) itemView.findViewById(R.id.bg_card);
+            itemView.setOnCreateContextMenuListener(this);
+            itemView.setOnLongClickListener(this);
         }
+
+        @Override
+        public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+            //获取打气筒
+            MenuInflater inflater = getActivity().getMenuInflater();
+            //解析菜单文件
+            inflater.inflate(R.menu.context_menu, menu);
+            menu.setHeaderTitle("Item 操作");
+        }
+
+        @Override
+        public boolean onLongClick(View v) {
+            v.showContextMenu();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        boolean consume;
+        switch (item.getItemId()) {
+            case R.id.menu_item_insert:
+                consume = true;
+                break;
+            case R.id.menu_item_refresh:
+                consume = true;
+                break;
+            case R.id.menu_item_replace:
+                consume = true;
+                break;
+            case R.id.menu_item_delete:
+                consume = true;
+                break;
+            default:
+                consume = false;
+                break;
+        }
+        return super.onContextItemSelected(item);
+    }
+
+    /**
+     * @param menu     　Menu对象
+     * @param v        触发ContextMenu的View 可以根据不同的View 加载不同的Menu配置
+     * @param menuInfo
+     */
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        //获取打气筒
+        MenuInflater inflater = getActivity().getMenuInflater();
+        //解析菜单文件
+        inflater.inflate(R.menu.context_menu, menu);
+        menu.setHeaderTitle("Item 操作");
+        super.onCreateContextMenu(menu, v, menuInfo);
+//        menu.setHeaderIcon();
+//        menu.setHeaderView()
     }
 
     private class customLinearLayoutManager extends LinearLayoutManager {
