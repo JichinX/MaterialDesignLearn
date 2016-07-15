@@ -38,4 +38,5 @@
     <color name="colorAccent_Gray">#e0e0e0</color>
     <color name="windowBackground_Gray">#f5f5f5</color>
 
+    <color name="red">#FF0000</color>
 </resources>

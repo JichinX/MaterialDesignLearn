@@ -6,19 +6,32 @@
     android:orientation="vertical">
 
     <android.support.v7.widget.CardView
-        android:id="@+id/bg_card"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="5dp"
         app:cardCornerRadius="5dp"
         app:cardElevation="5dp">
 
-        <TextView
-            android:id="@+id/text"
+        <LinearLayout
+            android:id="@+id/bg_card"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/ripple_red_with_white_mask"
-            android:gravity="center" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/text_title_color"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center" />
+
+            <TextView
+                android:id="@+id/text_body_text_color"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center" />
+        </LinearLayout>
     </android.support.v7.widget.CardView>
 
 </RelativeLayout>

@@ -8,5 +8,5 @@
         android:id="@android:id/mask"
         android:drawable="@drawable/stroke_red" />
     <!--背景-->
-    <item android:drawable="@drawable/solid_green" />
+    <item android:drawable="@drawable/solid_white" />
 </ripple>

@@ -214,16 +214,13 @@ public class AnimationFragment extends Fragment {
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void startAnimation(View v, boolean flag, float radius) {
-//        view 操作的视图
-//        centerX 动画开始的中心点X
-//        centerY 动画开始的中心点Y
-//        startRadius 动画开始半径
-//        startRadius 动画结束半径
         Animator animator = null;
         animator = ViewAnimationUtils.createCircularReveal(
-                v,
-                v.getWidth() / 2, v.getHeight() / 2,
-                flag ? 0 : radius, flag ? radius : 0);
+                v,                  // view 操作的视图
+                v.getWidth() / 2,   // centerX 动画开始的中心点X
+                v.getHeight() / 2,  // centerY 动画开始的中心点Y
+                flag ? 0 : radius,  // startRadius 动画开始半径
+                flag ? radius : 0); // startRadius 动画结束半径
         animator.setInterpolator(new AccelerateInterpolator());
         animator.setDuration(500);
         animator.start();

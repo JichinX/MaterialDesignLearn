@@ -5,5 +5,5 @@
         android:id="@android:id/mask"
         android:drawable="@drawable/image2" />
     <!--背景-->
-    <item android:drawable="@drawable/solid_green" />
+    <item android:drawable="@drawable/solid_white" />
 </ripple>

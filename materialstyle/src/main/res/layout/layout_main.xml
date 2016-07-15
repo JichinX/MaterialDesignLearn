@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:clipChildren="false"
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/test"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -51,7 +50,7 @@
             android:layout_margin="16dp"
             android:background="@drawable/ripple_with_shape"
             android:clickable="true"
-            android:translationZ="5dp">
+            android:elevation="5dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -97,20 +96,60 @@
             android:layout_margin="16dp"
             android:background="#FFFFFF"
             android:clipChildren="false"
+            android:elevation="5dp"
             android:gravity="center_horizontal"
             android:orientation="horizontal"
-            android:translationZ="5dp">
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp">
+
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center_vertical"-->
+            <!--android:layout_marginLeft="10dp"-->
+            <!--android:elevation="10dp"-->
+            <!--android:gravity="center_horizontal"-->
+            <!--android:outlineProvider="bounds"-->
+            <!--android:padding="5dp"-->
+            <!--android:text="bounds"-->
+            <!--android:visibility="gone" />-->
 
             <TextView
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_margin="10dp"
-                android:background="?attr/colorAccent"
+                android:background="#FFFFFF"
+                android:elevation="5dp"
                 android:gravity="center_horizontal"
+                android:outlineProvider="background"
                 android:padding="10dp"
-                android:text="阴影"
-                android:translationZ="10dp" />
+                android:text="background" />
+
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center_vertical"-->
+            <!--android:layout_marginLeft="10dp"-->
+            <!--android:elevation="5dp"-->
+            <!--android:gravity="center_horizontal"-->
+            <!--android:outlineProvider="paddedBounds"-->
+            <!--android:padding="10dp"-->
+            <!--android:text="paddedBounds"-->
+            <!--android:visibility="gone" />-->
+
+            <TextView
+                android:id="@+id/outline_test"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:background="#FFFFFF"
+                android:elevation="5dp"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="outline" />
 
         </LinearLayout>
 
@@ -126,18 +165,29 @@
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:background="#FFFFFF"
-                android:elevation="10dp">
+                android:elevation="5dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
                     android:background="#FFFFFF"
-                    android:elevation="15dp">
+                    android:elevation="5dp"
+                    android:gravity="center">
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="10dp"
+                        android:background="#FFF"
+                        android:elevation="5dp"
+                        android:gravity="center_horizontal"
+                        android:padding="10dp"
+                        android:text="阴影" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>
-</RelativeLayout>
+</ScrollView>
