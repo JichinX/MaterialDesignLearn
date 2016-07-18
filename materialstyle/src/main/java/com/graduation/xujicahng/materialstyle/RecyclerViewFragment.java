@@ -11,6 +11,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -78,7 +79,19 @@ public class RecyclerViewFragment extends Fragment implements Handler.Callback {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.layout_widget, null);
+        //获取RecyclerView控件的引用
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+        //设置布局管理器
+        recyclerView.setLayoutManager(linearLayoutManager);
+        //创建Adapter
+        adapter = new myRecyclerViewAdapter(sourceList, recyclerView);
+        //设置Adapter
+        recyclerView.setAdapter(adapter);
+        //设置Item添加移除动画
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        //设置分割线
+        recyclerView.addItemDecoration(new myItemDecoration());
+
         refreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefresh);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -96,9 +109,6 @@ public class RecyclerViewFragment extends Fragment implements Handler.Callback {
                 }.start();
             }
         });
-        recyclerView.setLayoutManager(linearLayoutManager);
-        adapter = new myRecyclerViewAdapter(sourceList, recyclerView);
-        recyclerView.setAdapter(adapter);
         //注册上下文菜单
 //        getActivity().registerForContextMenu(recyclerView);
 //        recyclerView.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
@@ -123,6 +133,17 @@ public class RecyclerViewFragment extends Fragment implements Handler.Callback {
         }
         //从指定行插入
         adapter.notifyItemInserted(start);
+        adapter.setOnItemClickedListener(new ItemClickListener() {
+            @Override
+            public void onItemLongClicked(int position) {
+
+            }
+
+            @Override
+            public void onItemClicked(int position) {
+
+            }
+        });
     }
 
     @Override
@@ -201,8 +222,25 @@ public class RecyclerViewFragment extends Fragment implements Handler.Callback {
         }
 
         @Override
-        public void onBindViewHolder(viewHolder holder, int position) {
+        public void onBindViewHolder(viewHolder holder, final int position) {
             holder.textView.setText(stringList.get(position));
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (null != listener) {
+                        listener.onItemClicked(position);
+                    }
+                }
+            });
+            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    if (null != listener) {
+                        listener.onItemLongClicked(position);
+                    }
+                    return false;
+                }
+            });
         }
 
         @Override
@@ -226,9 +264,21 @@ public class RecyclerViewFragment extends Fragment implements Handler.Callback {
             holder.itemView.setOnCreateContextMenuListener(null);
             super.onViewRecycled(holder);
         }
+
+        private ItemClickListener listener;
+
+        public void setOnItemClickedListener(ItemClickListener listener) {
+            this.listener = listener;
+        }
     }
 
-    private class viewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener, View.OnLongClickListener {
+    public interface ItemClickListener {
+        void onItemLongClicked(int position);
+
+        void onItemClicked(int position);
+    }
+
+    private class viewHolder extends RecyclerView.ViewHolder {
         private TextView textView;
         private CardView bgView;
 
@@ -236,23 +286,7 @@ public class RecyclerViewFragment extends Fragment implements Handler.Callback {
             super(itemView);
             textView = (TextView) itemView.findViewById(R.id.text);
             bgView = (CardView) itemView.findViewById(R.id.bg_card);
-            itemView.setOnCreateContextMenuListener(this);
-            itemView.setOnLongClickListener(this);
-        }
 
-        @Override
-        public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-            //获取打气筒
-            MenuInflater inflater = getActivity().getMenuInflater();
-            //解析菜单文件
-            inflater.inflate(R.menu.context_menu, menu);
-            menu.setHeaderTitle("Item 操作");
-        }
-
-        @Override
-        public boolean onLongClick(View v) {
-            v.showContextMenu();
-            return false;
         }
     }
 
@@ -347,5 +381,33 @@ public class RecyclerViewFragment extends Fragment implements Handler.Callback {
         animator.setInterpolator(new AccelerateInterpolator());
         animator.setDuration(200);
         animator.start();
+    }
+
+    private class myItemDecoration extends RecyclerView.ItemDecoration {
+
+    }
+
+    private class testAdapter extends RecyclerView.Adapter<viewHolder> {
+        private int size = 10;
+
+        @Override
+        public viewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            //解析作为ViewHolder的布局，即Item的布局
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_recycler_view_item, null);
+            //并创建ViewHolder对象，返回
+            return new viewHolder(view);
+        }
+
+        @Override
+        public void onBindViewHolder(viewHolder holder, int position) {
+            //对布局填充数据
+            holder.textView.setText(".....");
+        }
+
+        @Override
+        public int getItemCount() {
+            //返回作为数据源的集合的大小
+            return size;
+        }
     }
 }

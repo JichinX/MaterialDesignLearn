@@ -1,5 +1,7 @@
 package com.graduation.xujicahng.materialstyle;
 
+import android.animation.Animator;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -15,12 +17,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.transition.Fade;
+import android.transition.TransitionValues;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.TextView;
 
@@ -38,8 +42,16 @@ public class MainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             // 允许使用transitions
             getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
-            // 设置一个exit transition
+
+            //设置进入的动画
+            getWindow().setEnterTransition(new Fade());
+            // 设置一个退出动画
             getWindow().setExitTransition(new Fade());
+
+            //设置共享元素进入的动画
+            getWindow().setSharedElementEnterTransition(new Fade());
+            //设置共享元素的退出动画
+            getWindow().setSharedElementExitTransition(new Fade());
         }
         super.onCreate(savedInstanceState);
 
@@ -61,8 +73,10 @@ public class MainActivity extends AppCompatActivity {
             drawerlayout.addDrawerListener(toggle);
         }
         toggle.syncState();
+        //解析NavigationView,获取引用
         NavigationView navigationView = (NavigationView) findViewById(R.id.design_navigation_view);
         if (navigationView != null) {
+            //设置MenuItem的点击回调
             navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(MenuItem item) {
@@ -271,5 +285,31 @@ public class MainActivity extends AppCompatActivity {
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
+    }
+
+    @TargetApi(Build.VERSION_CODES.KITKAT)
+    private class myFade extends Fade{
+        @Override
+        public Animator onDisappear(ViewGroup sceneRoot, View view, TransitionValues startValues, TransitionValues endValues) {
+            return super.onDisappear(sceneRoot, view, startValues, endValues);
+        }
+
+        public myFade() {
+            super();
+        }
+
+        public myFade(int fadingMode) {
+            super(fadingMode);
+        }
+
+        public myFade(Context context, AttributeSet attrs) {
+            super(context, attrs);
+        }
+
+        @Override
+        public Animator onAppear(ViewGroup sceneRoot, View view, TransitionValues startValues, TransitionValues endValues) {
+            return super.onAppear(sceneRoot, view, startValues, endValues);
+        }
+
     }
 }

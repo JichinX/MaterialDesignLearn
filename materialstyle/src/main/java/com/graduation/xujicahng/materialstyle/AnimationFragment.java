@@ -1,17 +1,24 @@
 package com.graduation.xujicahng.materialstyle;
 
 import android.animation.Animator;
+import android.animation.AnimatorInflater;
 import android.animation.ObjectAnimator;
+import android.animation.StateListAnimator;
 import android.annotation.TargetApi;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.graphics.Path;
 import android.graphics.drawable.Animatable;
+import android.graphics.drawable.AnimatedStateListDrawable;
+import android.graphics.drawable.AnimatedVectorDrawable;
+import android.graphics.drawable.StateListDrawable;
+import android.graphics.drawable.VectorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.Fragment;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewAnimationUtils;
@@ -19,6 +26,7 @@ import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Interpolator;
+import android.view.animation.PathInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -90,6 +98,8 @@ public class AnimationFragment extends Fragment {
             public void onClick(View v) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     Intent intent = new Intent(getActivity(), ActivitySlide.class);
+                    //appBarLayout:需要共享的元素控件引用，
+                    //"AppBarLayout":需要共享元素的控件指定的 TransitionName属性指定的字符串值
                     ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(), appBarLayout, "AppBarLayout");
                     startActivity(intent, options.toBundle());
                 }
@@ -99,8 +109,10 @@ public class AnimationFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    Pair<View, String> pair1 = new Pair<View, String>(appBarLayout, "AppBarLayout");
+                    Pair<View, String> pair2 = new Pair<View, String>(appBarLayout, "AppBarLayout");
                     Intent intent = new Intent(getActivity(), ActivityFade.class);
-                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(), appBarLayout, "AppBarLayout");
+                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(), pair1, pair2);
                     startActivity(intent, options.toBundle());
                 }
             }
@@ -110,8 +122,9 @@ public class AnimationFragment extends Fragment {
             public void onClick(View v) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     Intent intent = new Intent(getActivity(), ActivityExplode.class);
-                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(), appBarLayout, "AppBarLayout");
-                    startActivity(intent, options.toBundle());
+                    startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
+//                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(), appBarLayout, "AppBarLayout");
+//                    startActivity(intent, options.toBundle());
                 }
             }
         });
@@ -152,8 +165,10 @@ public class AnimationFragment extends Fragment {
         vectorImageTriangle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Animatable animatable = (Animatable) vectorImageTriangle.getDrawable();
-                animatable.start();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    AnimatedVectorDrawable animatedVectorDrawable = (AnimatedVectorDrawable) vectorImageTriangle.getDrawable();
+                    animatedVectorDrawable.start();
+                }
             }
         });
         preBtn.setOnClickListener(new View.OnClickListener() {
@@ -172,6 +187,12 @@ public class AnimationFragment extends Fragment {
                 changeInterploator(1);
             }
         });
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+
+//            StateListDrawable stateListDrawable = getResources().getS
+            StateListAnimator stateListAnimator = AnimatorInflater.loadStateListAnimator(getContext(), R.drawable.state_change_selector);
+            nextbtn.setStateListAnimator(stateListAnimator);
+        }
         return view;
     }
 

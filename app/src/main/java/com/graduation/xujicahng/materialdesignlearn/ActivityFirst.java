@@ -124,18 +124,11 @@ public class ActivityFirst extends Activity {
         String name = nameInputLayout.getEditText().getText().toString();
         String pwd = pwdInputLayout.getEditText().getText().toString();
         if (!name.equals("xjc")) {
-            nameInputLayout.setError("用户名错误");
-            nameInputLayout.setErrorEnabled(true);
-
-
+            nameInputLayout.getEditText().setError("用户名错误");
+//            nameInputLayout.setError("用户名错误");
         } else if (!pwd.equals("123")) {
-            pwdInputLayout.setError("密码错误");
-            pwdInputLayout.setErrorEnabled(true);
-
-
+            pwdInputLayout.getEditText().setError("密码错误");
         } else {
-            pwdInputLayout.setErrorEnabled(false);
-            nameInputLayout.setErrorEnabled(false);
         }
     }
 }

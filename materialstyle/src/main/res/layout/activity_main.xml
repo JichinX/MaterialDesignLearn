@@ -25,14 +25,14 @@
         android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
+        <!--主布局-->
         <FrameLayout
             android:id="@+id/main_fragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
         </FrameLayout>
-
+        <!--侧边栏布局-->
         <android.support.design.widget.NavigationView
             android:id="@+id/design_navigation_view"
             android:layout_width="match_parent"
